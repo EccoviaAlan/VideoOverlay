@@ -91,21 +91,11 @@
     <None Include="app.config" />
     <None Include="bundleconfig.json" />
     <None Include="packages.config" />
-    <None Include="wwwroot\content\font-awesome-4.7.0\fonts\fontawesome-webfont.eot">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="wwwroot\content\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="wwwroot\content\font-awesome-4.7.0\fonts\fontawesome-webfont.woff">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="wwwroot\content\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="wwwroot\content\font-awesome-4.7.0\fonts\FontAwesome.otf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <EmbeddedResource Include="wwwroot\content\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
+    <EmbeddedResource Include="wwwroot\content\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
+    <EmbeddedResource Include="wwwroot\content\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
+    <EmbeddedResource Include="wwwroot\content\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
+    <EmbeddedResource Include="wwwroot\content\font-awesome-4.7.0\fonts\FontAwesome.otf" />
     <None Include="wwwroot\content\font-awesome-4.7.0\less\animated.less" />
     <None Include="wwwroot\content\font-awesome-4.7.0\less\bordered-pulled.less" />
     <None Include="wwwroot\content\font-awesome-4.7.0\less\core.less" />
@@ -142,35 +132,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="wwwroot\content\font-awesome-4.7.0\css\font-awesome.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\content\font-awesome-4.7.0\css\font-awesome.min.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\content\font-awesome-4.7.0\fonts\fontawesome-webfont.svg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <EmbeddedResource Include="wwwroot\content\font-awesome-4.7.0\css\font-awesome.css" />
+    <EmbeddedResource Include="wwwroot\content\font-awesome-4.7.0\css\font-awesome.min.css" />
+    <EmbeddedResource Include="wwwroot\content\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
     <Content Include="wwwroot\content\font-awesome-4.7.0\HELP-US-OUT.txt" />
-    <Content Include="wwwroot\content\vue\vue.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\content\vue\vue.min.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\js\_common.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\js\_common.min.js">
+    <EmbeddedResource Include="wwwroot\content\vue\vue.js" />
+    <EmbeddedResource Include="wwwroot\content\vue\vue.min.js" />
+    <EmbeddedResource Include="wwwroot\js\_common.js" />
+    <EmbeddedResource Include="wwwroot\js\_common.min.js">
       <DependentUpon>_common.js</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\kitchen\edit\index.htm">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\kitchen\index.htm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wwwroot\kitchen\edit.htm" />
+    <EmbeddedResource Include="wwwroot\kitchen\index.htm" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\css\" />

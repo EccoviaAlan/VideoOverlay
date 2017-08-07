@@ -7,17 +7,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <title>Kitchen Menu - Edit</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
-	<link rel="stylesheet" href="../../content/font-awesome-4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="../content/font-awesome-4.7.0/css/font-awesome.min.css" />
 </head>
 <body>
 	<div class="container">
 		<h1>Kitchen Menu</h1>
 		<div id="app">
 			<div class="row" v-for="item in list">
-				<div class="col-sm-5 col-md-4 col-lg-3">{{ item.date | date('ddd MMM dd, yyyy') }}</div>
-				<div class="col-sm">
-					<strong>{{ item.text }}</strong>
-					<span>{{ item.sub }}</span>
+				<div class="col-lg mb-2">
+					<div class="form-control-static">{{ item.date | date('ddd MMM dd, yyyy') }}</div>
+				</div>
+				<div class="col-sm-5 mb-2">
+					<input type="text" placeholder="Entree" class="form-control" v-model="item.text" v-on:blur="updateEntry(item)" />
+				</div>
+				<div class="col-sm-7 col-lg-5 mb-2">
+					<input type="text" placeholder="Side dish" class="form-control" v-model="item.sub" v-on:blur="updateEntry(item)" />
 				</div>
 			</div>
 		</div>
@@ -25,8 +29,8 @@
 	<script src="//code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-	<script src="../../content/vue/vue.min.js"></script>
-	<script src="../../js/_common.min.js"></script>
+	<script src="../content/vue/vue.min.js"></script>
+	<script src="../js/_common.min.js"></script>
 	<script>
 		(function() {
 			"use strict";
@@ -38,7 +42,23 @@
 				data: {
 					list: _list
 				},
-				filters: Eccovia.Filters
+				filters: Eccovia.Filters,
+				methods: {
+					updateEntry: function(item) {
+						if(item.text)
+							$.ajax({
+								url: "/api/entry/" + item.date.toFormat("yyyy-MM-dd"),
+								method: "POST",
+								data: JSON.stringify(item),
+								contentType: "application/json",
+								success: function(args) {
+									console.log(args);
+								}
+							}).fail(function(x) {
+								console.error("update failure", x);
+							});
+					}
+				}
 			});
 
 			_start.setDate(_start.getDate() - _start.getDay());
@@ -67,7 +87,7 @@
 							for(; i < len; i++) {
 								if(data[i].date > date) {
 									data.splice(i, 0, {
-										date: date
+										date: new Date(date)
 									});
 									len++;
 									used = true;
@@ -80,7 +100,7 @@
 							}
 							if(!used)
 								data.push({
-									date: date
+									date: new Date(date)
 								});
 							date.setDate(date.getDate() + 1);
 						}
@@ -88,8 +108,10 @@
 						_list.push.apply(_list, data);
 					}
 				}
+			}).fail(function(x) {
+				console.error("loading failure", x);
 			});
 		})();
 	</script>
 </body>
-</html>
+</html> 

@@ -19,7 +19,8 @@ namespace VideoOverlay.Web
 
 			var fileServerOptions = new FileServerOptions
 			{
-				FileSystem = new PhysicalFileSystem( "wwwroot" ),
+				//FileSystem = new PhysicalFileSystem( "wwwroot" ),
+				FileSystem = new EmbeddedResourceFileSystem( typeof( Startup ).Assembly, "VideoOverlay.Web.wwwroot" ),
 				EnableDefaultFiles = true
 			};
 			fileServerOptions.DefaultFilesOptions.DefaultFileNames = new[]
